@@ -45,10 +45,9 @@ pipeline {
             dir('java-maven-sonar-argocd-helm-k8s') {
               withCredentials([string(credentialsId: 'github', variable: 'GITHUB_TOKEN')]) {
                 sh '''
-                    ls
                     BUILD_NUMBER=${BUILD_NUMBER}
                     sed -i "s/replaceImageTag/${BUILD_NUMBER}/g" spring-boot-app-manifests/deployment.yml
-                    git config --global --add safe.directory /var/lib/jenkins/workspace/cicd
+                    //git config --global --add safe.directory /var/lib/jenkins/workspace/cicd
                     git add spring-boot-app-manifests/deployment.yml
                     git config user.email "krisnendu007@gmail.com"
                     git config user.name "krishmint"
